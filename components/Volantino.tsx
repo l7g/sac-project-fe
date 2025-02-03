@@ -14,10 +14,8 @@ import ProductCard from "./ProductCard";
 
 const Volantino: React.FC = () => {
   return (
-    <div className="flex flex-col bg-accent-light/50 dark:bg-accent-dark/50 p-10 pt-5">
-      <p className="text-2xl text-text-light/50 capitalize">Volantino</p>
-
-      <div className="flex flex-row gap-16">
+    <div className="flex flex-col bg-accent-light/50 dark:bg-accent-dark/50 p-10 pt-5 gap-8">
+      <div className="flex flex-col lg:flex-row  gap-16">
         <Card className="bg-accent-light dark:bg-accent-light border-none shadow-xl">
           <CardHeader>
             <p className="text-2xl text-text-light font-bold">
@@ -29,7 +27,7 @@ const Volantino: React.FC = () => {
             <Button className="bg-slate-100 mt-2">Esplora</Button>
           </CardContent>
         </Card>
-        <Carousel >
+        <Carousel>
           <CarouselContent>
             <CarouselItem className="md:basis-1/2 lg:basis-1/3">
               <ProductCard />
@@ -44,6 +42,12 @@ const Volantino: React.FC = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+      </div>
+
+      <div className="flex flex-row gap-2 justify-center">
+        <p className="text-lg text-text-light/80 dark:text-text-dark/80 border-b-[.1rem] border-text-light/80 dark:border-text-dark/80 capitalize">
+          Volantino
+        </p>
       </div>
     </div>
   );

@@ -20,6 +20,10 @@ const links = [
     name: "contact",
     path: "/contact",
   },
+  {
+    name: "login",
+    path: "/login",
+  },
 ];
 
 const Nav: React.FC = () => {

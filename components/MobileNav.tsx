@@ -42,6 +42,7 @@ const MobileNav: React.FC = () => {
             </h1>
           </Link>
         </div>
+        <div className=""></div>
         {/* nav */}
         <nav className="flex flex-col justify-center items-center gap-8">
           {links.map((link, index) => {
