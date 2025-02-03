@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const PageTransition: React.FC<IPageTransition> = ({ children }) => {
+  
   const pathname = usePathname();
   return (
     <AnimatePresence>

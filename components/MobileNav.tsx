@@ -23,10 +23,6 @@ const links = [
     name: "contact",
     path: "/contact",
   },
-  {
-    name: "login",
-    path: "/login",
-  },
 ];
 
 const MobileNav: React.FC = () => {
