@@ -9,7 +9,7 @@ import ThemeButton from "./ThemeButton";
 const links = [
   {
     name: "home",
-    path: "/",
+    path: "/dashboard",
   },
   {
     name: "products",

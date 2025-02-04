@@ -40,15 +40,30 @@ export interface IThemeContextProvider {
   children: ReactNode;
 }
 
+export interface ILoginContextProvider {
+  children: ReactNode;
+}
+
 export interface ISocial {
   containerStyles: string;
   iconStyles: string;
+}
+
+export interface IDashbboard {
+  children: ReactNode;
 }
 //#endregion
 //#region Context Types
 export type ThemeContextType = {
   theme: string;
   toggleTheme: () => void;
+};
+
+export type LoginContextType = {
+  token: string | null;
+  login: (token: string) => void;
+  logout: () => void;
+  isAuthenticated: boolean;
 };
 //#endregion
 //#region API Types
@@ -165,4 +180,24 @@ export type WarehouseStockType = {
   product: ProductType;
 };
 
+//#endregion
+//#region service functions
+export async function login(username: string, password: string) {
+  const response = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, password }),
+  });
+
+  if (response.ok) {
+    const { token } = await response.json();
+    localStorage.setItem("token", token);
+    return token;
+  } else {
+    const error = await response.json();
+    throw new Error(error.error || "Login failed");
+  }
+}
 //#endregion

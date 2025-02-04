@@ -3,9 +3,8 @@ import { Inter } from "next/font/google";
 
 // components
 import ThemeContextProvider from "@/components/ThemeContextProvider";
-import "./globals.css";
+import "./../../globals.css";
 import Dashboard from "@/components/Dashboard";
-import LoginContextProvider from "@/components/LoginContextProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,18 +16,18 @@ export const metadata: Metadata = {
   description: "Campania's and Lazio's biggest tech retailer",
 };
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <ThemeContextProvider>
-      <LoginContextProvider>
-        <html lang="en">
-          <body className={inter.className}>{children}</body>
-        </html>
-      </LoginContextProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Dashboard children={children} />
+        </body>
+      </html>
     </ThemeContextProvider>
   );
 }
