@@ -162,7 +162,8 @@ export type ShopStockType = {
 
 export type UserProfileType = {
   id: number;
-  username: number;
+  userName: string;
+  email: string;
   passwordHash: string;
   dob: Date;
   phoneNumber: string;
@@ -182,22 +183,49 @@ export type WarehouseStockType = {
 
 //#endregion
 //#region service functions
-export async function login(username: string, password: string) {
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  });
+// Importa la libreria fetch
 
-  if (response.ok) {
-    const { token } = await response.json();
-    localStorage.setItem("token", token);
-    return token;
-  } else {
-    const error = await response.json();
-    throw new Error(error.error || "Login failed");
+// Definisci un'interfaccia per la risposta del login
+interface LoginResponse {
+  token: string;
+}
+
+interface ErrorResponse {
+  error: string;
+}
+
+// Funzione per eseguire il login
+export async function login(email: string, password: string) {
+  console.log("Esegui la richiesta di login...");
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://localhost:7179";
+  console.log("API URL:", apiUrl);
+  const loginUrl = `${apiUrl}/api/userprofiles/login`;
+
+  try {
+    const response = await fetch(loginUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, passwordHash: password }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.log("Errore nella risposta del server:", errorData);
+      throw new Error(errorData.message || "Login fallito");
+    }
+
+    // Prova a ottenere i dati JSON dalla risposta
+    const data = await response.json();
+    console.log("Risposta dal server:", data);
+    return data;
+
+  } catch (error) {
+    // Gestisci gli errori
+    console.error("Errore durante la richiesta:", error);
+    throw error;
   }
 }
 //#endregion

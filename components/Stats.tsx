@@ -1,8 +1,8 @@
-"use client";
+/*"use client";
 
 import CountUp from "react-countup";
 
-const stats = [
+  const stats = [
   {
     num: 2,
     text: "Years of experience",
@@ -34,7 +34,7 @@ const Stats: React.FC = () => {
               >
                 <CountUp
                   end={stat.num}
-                  duration={5}
+                  duration
                   delay={2}
                   className="text-4xl xl:text-6xl font-extrabold"
                 />
@@ -54,4 +54,4 @@ const Stats: React.FC = () => {
   );
 };
 
-export default Stats;
+export default Stats;*/

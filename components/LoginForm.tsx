@@ -23,15 +23,18 @@ export function LoginForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("Button pressed!");
     try {
       const token = await login(username, password);
+      console.log("Login successful, received token:", token);
+      
       handleLogin(token);
       alert("Login successful!");
     } catch (err: any) {
+      console.error("Login error:", err);
       setError(err.message);
     }
   }
+  
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -100,7 +103,7 @@ export function LoginForm({
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <Button type="submit" className="w-full" onClick={handleSubmit}>
+                <Button type="submit" className="w-full">
                   Login
                 </Button>
               </div>
